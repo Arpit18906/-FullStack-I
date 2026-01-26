@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bank</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+    }
+
+    .bank {
+      width: 100%;
+      max-width: 420px;
+      background: #020617;
+      padding: 30px 26px 34px;
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    }
+
+    .bank h1 {
+      text-align: center;
+      margin-bottom: 26px;
+      font-size: 32px;
+    }
+
+    .balance-box {
+      background: #1e293b;
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .balance-box span {
+      display: block;
+      font-size: 16px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .balance-box h2 {
+      font-size: 36px;
+      color: #22c55e;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    button {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .deposit {
+      background: #16a34a;
+    }
+
+    .withdraw {
+      background: #dc2626;
+    }
+
+    .message {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .bank {
+        border-radius: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bank">
+    <h1>My Bank</h1>
+
+    <div class="balance-box">
+      <span>Available Balance</span>
+      <h2 id="balance">₹ 1000</h2>
+    </div>
+
+    <input type="number" id="amount" placeholder="Enter amount" />
+
+    <div class="actions">
+      <button class="deposit" onclick="deposit()">Deposit</button>
+      <button class="withdraw" onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // Default balance
+    let balance = 1000;
+
+    function deposit() {
+      const amt = Number(document.getElementById("amount").value);
+      const msg = document.getElementById("message");
+
+      if (amt <= 0) {
+        msg.textContent = "Please enter a valid amount";
+        msg.style.color = "#facc15";
+        return;
+      }
+
+      balance += amt;
+      updateUI("Deposit successful", "#22c55e");
+    }
+
+    function withdraw() {
+      const amt = Number(document.getElementById("amount").value);
+      const msg = document.getElementById("message");
+
+      if (amt <= 0) {
+        msg.textContent = "Please enter a valid amount";
+        msg.style.color = "#facc15";
+        return;
+      }
+
+      if (amt > balance) {
+        msg.textContent = "Insufficient balance";
+        msg.style.color = "#ef4444";
+        return;
+      }
+
+      balance -= amt;
+      updateUI("Withdrawal successful", "#22c55e");
+    }
+
+    function updateUI(text, color) {
+      document.getElementById("balance").textContent = "₹ " + balance;
+      const msg = document.getElementById("message");
+      msg.textContent = text;
+      msg.style.color = color;
+      document.getElementById("amount").value = "";
+    }
+  </script>
+
+</body>
+</html>
