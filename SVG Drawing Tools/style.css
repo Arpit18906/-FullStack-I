@@ -1,0 +1,16 @@
+body {
+    background-color: #1C1C1C;   
+    color: #EAE6DA;              
+    font-family: serif;
+    padding: 30px;
+}
+
+h3 {
+    color: #C73E3A;              
+}
+
+#canvas {
+    background-color: #F5F3EB;  
+    border: 3px solid #3A5F7D;  
+    cursor: crosshair;
+}
