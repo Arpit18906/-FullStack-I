@@ -1,0 +1,17 @@
+body {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding: 44px;
+    background-color:black;
+    color: aquamarine;
+}
+textarea {
+    width: 400px;
+    height: 170px;
+    font-size: 20px;
+    padding: 14px;
+}
+#count{
+    color:fuchsia;
+    font-weight: bolder;
+}
